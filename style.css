@@ -1,0 +1,320 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+/*
+.header is setting the background image 
+as well as centering it and ensuring it takes up the entire page
+*/
+.header{
+    width: 100%;
+    height: 100vh;
+    background-image:url(images/Background3.jpg);
+    background-position: center;
+    background-size: cover;
+}
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(images/Website-Text.png); 
+    background-position: center;
+    background-size: 1200px 500px; 
+    background-repeat: no-repeat;
+}
+/*
+.side-nav is setting the width of the side navigation bar. We are also
+ensuring it takes up the length of the page, its position will remain fixed
+we also make it a blur effect
+*/
+.side-nav{
+    width: 110px;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 30px 15px;
+    background: rgba(0, 0, 0, 0.603);
+    backdrop-filter: blur(5px);
+
+    /*
+    This code underneath ensures that there is adequete spacing between user info
+    as well as placing the log out button at the bottom of the page
+    */
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+
+    /*
+    this transitions allows for the width to change and go from 110px to 250px smoothly'
+    in 0.5 seconds
+    */
+    transition: width .5s;
+}
+/*
+.user is centering the user icon and setting the position and font size
+we also make the it hidden by default
+*/
+.user{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 60px;
+    font-size: 12px;
+    padding: 10px;
+    border-radius: 8px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    color: white
+}
+/*
+This will hide the display text by default
+*/
+.user div{
+    display: none;
+}
+/*
+.user h2 is making username appear larger 
+*/
+.user h2{
+    font-size: 15px;
+    font-weight: 600;
+    white-space: nowrap;
+    color:white
+}
+/*
+.user-img is setting the size of the user image as well as making it a circle
+*/
+.user-img{
+    width: 40px;
+    border-radius: 50%;
+    margin: auto;
+}
+/*
+.star-img is setting the size of the start icon next to username icon 
+and link we are also hiding it by default
+*/
+.star-img{
+    width: 20px;
+    display: none;
+}
+/*
+ul refers to all the images and buttons on the side of the dash board
+*/
+ul{
+    list-style: none;
+    padding: 0 15px;
+}
+/*
+ul li is centering the text next to the image
+as well as making the text and image start from the left of the daskboard in 
+line with the user info
+*/
+ul li{
+    margin: 30px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+/*
+ul li img is setting image size and adding space betweem the text and image
+*/
+ul li img{
+    width: 30px;
+    margin-right: 0px;   
+    background: rgba(255, 255, 255, 0.476);
+    border-radius: 50%;
+    padding: 2px;
+}
+/*
+ul li p refers to the text next to the dashboard images
+we will hide it by default
+*/
+ul li p{
+    white-space: nowrap;
+    display: none;
+    color: white
+}
+/*
+.side-nav:hover controls the dashboard hover functionality
+goes from 110px minimized to 250 px
+*/
+.side-nav:hover{
+    width: 250px;
+}
+/*
+.side-nav:hover .user div
+makes the username text appear
+*/
+.side-nav:hover .user div{
+    display: block;
+}
+/*
+Sets the width of the text Next to username 
+to 100% so it isnt cut on in dashboard when hovering
+also sets a blur to create a box effect 
+*/
+.side-nav:hover .user{
+    width: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+}
+/*
+.side-nav:hover .star-img Makes start icon visible  when hovering
+*/
+.side-nav:hover .star-img{
+    display: block;
+}
+/*
+.side-nav:hover .user-img adds a margin so the start icon
+doesnt interfere with the user info
+*/
+.side-nav:hover .user-img{
+    margin: 0;
+}
+/*
+Sets text for dashboard buttons to appear when hovering
+*/
+.side-nav:hover ul li p{
+    display: block;
+}
+/*
+Sets margin from 0px to 10px when hovering
+*/
+.side-nav:hover ul li img{
+    margin-right: 10px;
+}
+/*
+Alligns the buttons when the dashboard is hovered on to the left
+*/
+.side-nav:hover ul li{
+    justify-content: flex-start;
+}
+/*
+Highlight dashboard buttons when hovered
+*/
+.side-nav:hover ul li:hover{
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+    border-radius: 6px;
+}
+
+/*----------------------------------END OF DASHBOARD-------------------------------*/
+
+#chatbox-container {
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    width: 20%;
+    background: #FFFFFF;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    z-index: 1000;
+}
+
+
+#chatbox-header {
+    background: #000000;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    text-align: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    display: flex;
+    align-items: center;
+}
+
+#chatbox-header h2 {
+    margin-left: 10px;
+    flex: 1;
+    color: #ffffff;
+}
+
+#chatbox-body {
+    height: 300px;
+    overflow-y: scroll; /* Change from 'auto' to 'scroll' */
+    scrollbar-width: thin; /* For Firefox */
+    scrollbar-color: transparent transparent; /* For Firefox */
+    background-color: #f8f9fa;
+    padding: 10px;
+    scroll-behavior: smooth;
+}
+
+#chatbox-body::-webkit-scrollbar {
+    width: 6px; /* For Chrome, Safari, and Opera */
+}
+
+#chatbox-body::-webkit-scrollbar-thumb {
+    background-color: transparent; /* For Chrome, Safari, and Opera */
+}
+
+.user-message {
+    max-width: 70%;
+    margin-bottom: 10px;
+    background-color: #007bff; /* Blue background color */
+    color: #fff; /* White text color */
+    border-radius: 15px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    max-width: 100%;
+    margin-left: auto; /* Pushes the user message bubble to the right */
+}
+
+.user-message p {
+    margin: 0;
+    word-wrap: break-word;
+}
+
+#chatbox-input {
+    padding: 10px;
+    background-color: #fff;
+    display: flex;
+    border-top: 1px solid #ccc;
+    border-radius: 0 0 10px 10px;
+}
+
+#chatbox-input input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-right: 10px;
+    width: 10px;
+}
+
+#send-button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.chatbot-message {
+    max-width: 70%;
+    margin-bottom: 10px;
+    background-color: #28a745; /* Green background color */
+    color: #fff; /* White text color */
+    border-radius: 15px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    max-width: 100%;
+}
+
+.chatbot-message p {
+    margin: 0;
+    word-wrap: break-word;
+}

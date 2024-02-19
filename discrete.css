@@ -1,0 +1,120 @@
+/* Global styles for resetting defaults and box-sizing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Styles for content sections */
+.content-section {
+    background-color: #333; /* Dark gray background for content sections */
+    color: white; /* White text color for readability */
+    padding: 20px 5%; /* Padding with 5% gap from left and right margins */
+    margin: 20px auto; /* Vertical spacing and centering */
+    border-radius: 15px; /* Rounded corners for content sections */
+}
+
+/* Specific style for the propositions section */
+#propositions {
+    background-color: #222; /* Darker gray for propositions section */
+    border-radius: 10px; /* Rounded corners */
+    padding: 20px; /* Padding */
+    margin-top: 30px; /* Top margin */
+}
+
+/* Style for unordered lists within proposition examples */
+.proposition-examples ul {
+    list-style: none; /* Remove list style */
+    padding-left: 20px; /* Left padding */
+}
+
+/* Text alignment for logical, precedence, and truth table information sections */
+.logic-section p, .precedence-section p, .truth-table-info p {
+    text-align: left; /* Align text to the left */
+    margin-left: 20px; /* Left margin */
+}
+
+/* Style for tables within the precedence section */
+.precedence-section table {
+    margin-left: 20px; /* Left margin for the table */
+    border-collapse: collapse; /* Collapse borders for a cleaner look */
+    width: auto; /* Auto width to fit content */
+}
+
+/* Border and padding for table cells in the precedence section */
+.precedence-section table, .precedence-section th, .precedence-section td {
+    border: 1px solid white; /* White borders for contrast */
+    padding: 5px; /* Padding inside cells */
+}
+
+/* Background color for table headers in the precedence section */
+.precedence-section th {
+    background-color: #444; /* Darker gray for headers */
+}
+
+/* Center text alignment for table data cells in the precedence section */
+.precedence-section td {
+    text-align: center; /* Center text within cells */
+}
+
+/* Style for truth table information unordered lists */
+.truth-table-info ul {
+    list-style: none; /* Remove list style */
+    padding-left: 20px; /* Left padding */
+}
+
+/* Style for all tables within content sections */
+.content-section table {
+    border-collapse: collapse; /* Collapse borders for tables */
+    margin: 20px auto; /* Center tables with vertical spacing */
+    background: white; /* White background for tables */
+    color: black; /* Black text color for tables */
+}
+
+/* Style for table cells within content sections */
+.content-section td, .content-section th {
+    border: 1px solid black; /* Black borders for cells */
+    padding: 8px; /* Padding inside cells */
+    text-align: center; /* Center text within cells */
+}
+
+/* Style for table captions within content sections */
+.content-section caption {
+    margin-bottom: 10px; /* Bottom margin for spacing */
+    font-weight: bold; /* Bold font for captions */
+    text-align: center; /* Center-align captions */
+}
+
+/* Centered headings within content sections */
+.content-section h2 {
+    text-align: center; /* Center align headings */
+    font-size: 2rem; /* Font size for readability */
+    margin: 20px 0; /* Vertical spacing for headings */
+}
+
+/* Adjustments for smaller screens */
+@media (max-width: 600px) {
+    .content-section {
+        padding: 20px 10%; /* Increase padding for smaller screens */
+    }
+
+    .content-section h2 {
+        font-size: 1.5rem; /* Decrease font size for headings on smaller screens */
+    }
+
+    .content-section p {
+        margin-left: 10%; /* Increase margin from the left for smaller screens */
+        margin-right: 10%; /* Increase margin from the right for smaller screens */
+    }
+}
+
+/* Adjustments for larger screens */
+@media (min-width: 1200px) {
+    .content-section {
+        padding: 20px 10%; /* Adjust padding for larger screens */
+    }
+
+    .content-section h2 {
+        font-size: 2.5rem; /* Increase font size for headings on larger screens */
+    }
+}

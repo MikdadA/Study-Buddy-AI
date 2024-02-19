@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Buddy AI </title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="images/Logo/Favicon.png" type="image/x-icon">
+</head>
+<body>
+<div class="header">
+    <div class="overlay"></div>
+    <div class="side-nav">
+        <div class="user">
+            <img src="images/Logo/Logo_High_Quality.png" class="user-img">
+            <div>
+            <h2>Mikdad Abdullah</h2>
+            <p>StudyBuddy.com</p>
+            </div>
+            <img src="images/star.png" class="star-img">
+        </div>
+        <ul>
+            <li onclick="goToDiscrete()">
+                <img src="images/dashboard.png">
+                <p>Discrete Structures</p>
+            </li>
+            <li onclick="goToComingSoon()">
+                <img src="images/reports.png">
+                <p>Intro to C++</p>
+            </li>
+            <li onclick="goToComingSoon()">
+                <img src="images/rewards.png">
+                <p>OOP in C++</p>
+            </li>
+            <li onclick="goToComingSoon()">
+                <img src="images/messages.png">
+                <p>Discrete Math</p>
+            </li>
+            <li onclick="goToComingSoon()">
+                <img src="images/members.png">
+                <p>Linear Algebra</p>
+            </li>
+            <li onclick="goToComingSoon()">
+                <img src="images/setting.png">
+                <p>Settings</p>
+            </li>
+        </ul>
+        <ul>
+            <li><img src="images/logout.png"><p>Logout</p></li>
+        </ul>
+
+    </div>    
+</div>
+<!-- STUDY BUDDY AI -->
+<div id="chatbox-container">
+    <div id="chatbox-header">
+        <h2>Quark</h2>
+    </div>
+    <div id="chatbox-body">
+    </div>
+    <div id="chatbox-input">
+        <input type="text" id="user-input" placeholder="Type your message..." onkeydown="handleKeyDown(event)">
+        <button id="send-button" onclick="sendMessage()">Send</button>
+    </div>
+</div>
+
+<script>
+if (document.getElementById("chatbox-container")) {
+    // This if statement ensures this code works for only the chat bot ai
+
+    function handleKeyDown(event) {
+        if (event.key === "Enter") {
+            sendMessage();
+        }
+    }
+
+    function sendMessage() {
+    var userInput = document.getElementById("user-input");
+    var message = userInput.value;
+
+    if (message.trim() !== "") {
+        // Create a new div element for the user message
+        var userMessageDiv = document.createElement("div");
+        userMessageDiv.className = "user-message";
+        userMessageDiv.innerHTML = "<p>" + message + "</p>";
+
+        // Append the user message to the chatbox body
+        var chatboxBody = document.getElementById("chatbox-body");
+        chatboxBody.appendChild(userMessageDiv);
+
+        // Clear the input field after sending the user message
+        userInput.value = "";
+
+        // Scroll to the bottom after appending the user's message
+        chatboxBody.scrollTop = chatboxBody.scrollHeight;
+
+        // Make a request to the Flask backend
+        fetch('http://localhost:5000/chat', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ message: message }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            const botResponse = data.response;
+
+            // Create a new div element for the chatbot's response
+            var chatbotResponseDiv = document.createElement("div");
+            chatbotResponseDiv.className = "chatbot-message";
+            chatbotResponseDiv.innerHTML = "<p>" + botResponse + "</p>";
+
+            // Append the chatbot's response to the chatbox body
+            chatboxBody.appendChild(chatbotResponseDiv);
+
+            // Scroll to the bottom after appending the chatbot's response
+            chatboxBody.scrollTop = chatboxBody.scrollHeight;
+        })
+        .catch(error => console.error('Error:', error));
+    }
+}
+
+    function goToComingSoon(){
+        window.location.replace("ComingSoon.html");
+    }
+
+    function goToDiscrete() {
+        // Use window.location.replace to redirect without keeping the current page in the history
+        window.location.replace("discrete.html");
+    }
+}
+</script>
+
+</body>
+</html>
+

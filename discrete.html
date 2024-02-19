@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discrete Structures</title>
+    <style>
+        /* Styles for body, h1, grid-container, grid-item, content-section, interactive-element */
+        /* Additional styles for quiz and buttons */
+        body {
+            margin: 0;
+            padding: 0;
+            background: rgba(255, 255, 255, .2);
+            background-image:url(images/Background-Discrete.png);
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 50px;
+            margin-top: 50px;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 20px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .grid-item {
+            background: rgba(255, 255, 255, .2);
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 650;
+            transition: background-color .4s ease;
+            cursor: pointer;
+        }
+
+        .grid-item:hover {
+            background-color: #5410b3;
+        }
+
+        .content-section {
+            margin-top: 30px;
+            padding: 20px;
+            gap: 20px;
+            background-color: #222;
+            color: grey;
+            border-radius: 10px;
+            text-align: left;
+        }
+
+        .interactive-element {
+            background-color: #444;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .interactive-element:hover, .quiz button:hover {
+            background-color: #555;
+        }
+
+        .quiz button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .quiz {
+            background-color: #f7f7f7;
+            color: #333;
+            padding: 15px;
+            margin-top: 20px;
+        }
+        
+        .back-button {
+        cursor: pointer;
+        position: absolute;
+        top: 52px;
+        left: 50px;
+        width: 30px;
+        height: 30px;
+        }
+
+        .carousel-nav {
+            margin-top: 20px;
+        }
+
+        .carousel-nav button {
+            background: rgba(131, 27, 183, 0.539);
+            color: white;
+            padding: 10px 15px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .carousel-nav-dots {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.6);
+            margin: 0 5px;
+            cursor: pointer;
+        }
+
+        .current-dot {
+            background-color: rgb(196, 23, 223);
+        }
+            /* Styles for the Rules of Inference section */
+    #rules-of-inference .inference-rules-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+    }
+
+    #rules-of-inference .inference-rule {
+        background-color: rgba(255, 255, 255, 0.8); /* Light background for readability */
+        border: 1px solid #000; /* Border for definition */
+        padding: 10px;
+        border-radius: 5px; /* Rounded corners */
+    }
+
+    #rules-of-inference h3 {
+        color: #a510b3; /* Color for the headings to stand out */
+    }
+    /* Reset margin and padding for all elements to ensure consistency */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Styles for all headings */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Arial', sans-serif;
+    text-align: center; /* Center align all headings */
+    margin-bottom: 0.5em; /* Add some space below headings */
+}
+
+/* Responsive font sizes for headings */
+h1 {
+    font-size: 2.5%; /* Adjust based on your preference */
+}
+
+h2 {
+    font-size: 2%; /* Adjust based on your preference */
+}
+
+/* Responsive font size for body text */
+body {
+    font-family: 'Arial', sans-serif;
+    font-size: 1.25vw; /* Adjust based on your preference */
+}
+
+/* Adjustments for smaller screens */
+@media (max-width: 600px) {
+    body {
+        font-size: 3.5vw; /* Larger size for small screens */
+    }
+
+    h1 {
+        font-size: 5vw; /* Adjust based on your preference */
+    }
+    
+    h2 {
+        font-size: 4.5vw; /* Adjust based on your preference */
+    }
+}
+
+/* Adjustments for larger screens */
+@media (min-width: 1200px) {
+    body {
+        font-size: 18px; /* Fixed size for large screens */
+    }
+
+    h1 {
+        font-size: 36px; /* Fixed size for large screens */
+    }
+    
+    h2 {
+        font-size: 30px; /* Fixed size for large screens */
+    }
+}
+
+/* Styles for content sections to add more padding and potentially adjust width */
+.content-section {
+    padding: 20px; /* Add more padding for readability */
+    width: 80%; /* Adjust width as necessary */
+    margin: 0 auto; /* Center the content sections */
+    max-width: 1200px; /* Optional: max-width to prevent sections from getting too wide on large screens */
+}
+
+/* Responsive tables */
+.content-section table {
+    width: 100%; /* Full width of the content section */
+    margin-top: 20px; /* Add some space above the table */
+    margin-bottom: 20px; /* Add some space below the table */
+}
+
+.content-section th, 
+.content-section td {
+    padding: 12px; /* Larger padding for table cells */
+}
+
+/* If you have additional elements you want to style, add them here */
+                    
+</style>
+</head>
+<body>
+    <!-- Back button image -->
+    <img src="images/Back Button.png" alt="Go Back to Index" onclick="goToIndex()" class="back-button">
+
+    <h1>Discrete Structures</h1>
+
+    <div class="grid-container">
+        <!-- Your grid items go here -->
+        <div class="grid-item" onclick="scrollToSection('set-theory')">Propositional Logic</div>
+        <!-- Other Subtopics -->
+        <div class="grid-item">Boolean Algebra</div>
+        <div class="grid-item">Basic Mathematical Structures</div>
+        <div class="grid-item">Counting</div>
+        <div class="grid-item">Growth of Functions</div>
+        <div class="grid-item">Asymptotic Notation</div>
+        <div class="grid-item">Algorithms Design and Analysis</div>
+        <div class="grid-item">Search Algorithms</div>
+        <div class="grid-item">Induction and Recursion</div>
+        <div class="grid-item">Master Theorem</div>
+        <div class="grid-item">Simple and D&C Recurrences</div>
+        <div class="grid-item">Linear Homogeneous Recurrences</div>
+        <div class="grid-item">Inclusion-Exclusion</div>
+        <div class="grid-item">Discrete Probability</div>
+        <div class="grid-item">Relations and Graphs</div>
+        <div class="grid-item">Graphs and Graph Algorithms</div>
+        <div class="grid-item">Trees and Tree Algorithms</div>
+    </div>
+
+    <div class="carousel-nav-dots" id="carouselDots"></div>
+    <div class="carousel-nav">
+        <button onclick="prevSlide()">❮ Prev</button>
+        <button onclick="nextSlide()">Next ❯</button>
+    </div>
+
+<!-- Propositions Section -->
+<div id="propositions" class="content-section">
+    <h2>Propositions</h2>
+    <p><strong>Proposition:</strong> a declarative sentence that is either true or false.</p>
+    <div class="proposition-examples">
+        <p><strong>Examples:</strong></p>
+        <ul>
+            <li>The moon is made of cheese</li>
+            <li>1 + 0 = 1</li>
+        </ul>
+        <p><strong>Non-Examples:</strong></p>
+        <ul>
+            <li>Sit down!</li>
+            <li>x + 1 = 2</li>
+        </ul>
+    </div>
+
+    <div class="logic-section">
+        <p><strong>Negation:</strong> If p = "The earth is round" then ¬p denotes "It is not the case that the earth is round" or "The earth is not round."</p>
+        <p><strong>Conjunction:</strong> If p = "I am at home" and q = "It is raining" then p ∧ q denotes "I am at home and it is raining."</p>
+        <p><strong>Disjunction:</strong> If p = "I am at home" and q = "It is raining" then p ∨ q denotes "I am at home or it is raining."</p>
+        <p><strong>Implication (conditional):</strong> If p = "I am home" and q = "It is raining" then p → q denotes "If I am home then it is raining."</p>
+        <p><strong>Biconditional:</strong> If p = "I am home" and q = "It is raining" then p ↔ q denotes "I am home if and only if it is raining."</p>
+    </div>
+
+    <div class="precedence-section">
+        <p><strong>Precedence of logical operators:</strong></p>
+        <table>
+            <tr>
+                <th>Operator</th>
+                <th>Precedence</th>
+            </tr>
+            <tr>
+                <td>¬</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>∧</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>∨</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>→</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>↔</td>
+                <td>5</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="truth-table-info">
+        <p><strong>Truth Table:</strong></p>
+        <ul>
+            <li>Number of rows = 2<sup>n</sup></li>
+            <li>Number of columns = at least 1 for each variable plus at least 1 for the results</li>
+            <li>Number of possible truth tables = 2<sup>2<sup>n</sup></sup></li>
+        </ul>
+    </div>
+</div>
+
+<!-- Truth Tables Section -->
+<div id="truth-tables" class="content-section">
+    <h2>Truth Tables</h2>
+    <p>Understand how truth tables represent the logical functions of propositions.</p>
+    <div class="table-container">
+        <!-- Negation Table -->
+        <table>
+            <caption>Negation</caption>
+            <tr>
+                <th>p</th>
+                <th>¬p</th>
+            </tr>
+            <tr>
+                <td>T</td>
+                <td>F</td>
+            </tr>
+            <tr>
+                <td>F</td>
+                <td>T</td>
+            </tr>
+        </table>
+
+        <!-- Conjunction Table -->
+        <table>
+            <caption>Conjunction</caption>
+            <tr>
+                <th>p</th>
+                <th>q</th>
+                <th>p ∧ q</th>
+            </tr>
+            <tr>
+                <td>T</td>
+                <td>T</td>
+                <td>T</td>
+            </tr>
+            <tr>
+                <td>T</td>
+                <td>F</td>
+                <td>F</td>
+            </tr>
+            <tr>
+                <td>F</td>
+                <td>T</td>
+                <td>F</td>
+            </tr>
+            <tr>
+                <td>F</td>
+                <td>F</td>
+                <td>F</td>
+            </tr>
+        </table>
+        <!-- ... [Other tables like Disjunction, Implication, Biconditional] ... -->
+    </div>
+</div>
+
+<!-- Proposition Types Section -->
+<div id="proposition-types" class="content-section">
+    <h2>Types of Propositions</h2>
+    <p>Explore different types of propositions based on their logical structure and truth values.</p>
+    <div class="definitions-container">
+        <!-- Tautology Definition -->
+        <div class="definition">
+            <h3>Tautology</h3>
+            <p>A proposition which is always true.</p>
+            <p>Example: p ∨ ¬p</p>
+        </div>
+        <!-- Contradiction Definition -->
+        <div class="definition">
+            <h3>Contradiction</h3>
+            <p>A proposition which is always false.</p>
+            <p>Example: p ∧ ¬p</p>
+        </div>
+        <!-- Contingency Definition -->
+        <div class="definition">
+            <h3>Contingency</h3>
+            <p>A proposition which is neither a tautology nor a contradiction.</p>
+            <p>Example: p and q are contingencies.</p>
+            <!-- Example Table -->
+            <table>
+                <tr>
+                    <th>p</th>
+                    <th>q</th>
+                </tr>
+                <tr>
+                    <td>T</td>
+                    <td>F</td>
+                </tr>
+                <tr>
+                    <td>F</td>
+                    <td>T</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <!-- ... [Logical Equivalences Tables] ... -->
+</div>
+
+<div id="rules-of-inference" class="content-section">
+    <h2>Rules of Inference</h2>
+    <p>Taking premises and deducing an outcome, deducing logical outcomes, forming tautologies.</p>
+    <p><strong>Example:</strong> If it rains, I will get wet.<br>It's raining<br>∴ I will get wet</p>
+    <p>A set of premises <em>p<sub>1</sub>, p<sub>2</sub>, ... , p<sub>n</sub></em> prove some conclusion q in an argument <em>(p<sub>1</sub> ∧ p<sub>2</sub> ∧ ... ∧ p<sub>n</sub>) → q</em></p>
+    <p>An argument is valid if the premises logically entail the conclusion.</p>
+    
+    <!-- Inference Rules List -->
+    <div class="inference-rules-list">
+        <div class="inference-rule">
+            <h3>1) Modus Ponens</h3>
+            <p>p → q<br>p<br>∴ q</p>
+        </div>
+        <div class="inference-rule">
+            <h3>2) Modus Tollens</h3>
+            <p>p → q<br>¬q<br>∴ ¬p</p>
+        </div>
+        <div class="inference-rule">
+            <h3>3) Addition</h3>
+            <p>p<br>∴ p ∨ q</p>
+        </div>
+        <div class="inference-rule">
+            <h3>4) Hypothetical Syllogism</h3>
+            <p>p → q<br>q → r<br>∴ p → r</p>
+        </div>
+        <div class="inference-rule">
+            <h3>5) Disjunctive Syllogism</h3>
+            <p>p ∨ q<br>¬p<br>∴ q</p>
+        </div>
+        <div class="inference-rule">
+            <h3>6) Simplification</h3>
+            <p>p ∧ q<br>∴ p<br>∴ q</p>
+        </div>
+        <div class="inference-rule">
+            <h3>7) Conjunction</h3>
+            <p>p<br>q<br>∴ p ∧ q</p>
+        </div>
+    </div>
+</div>
+
+<div id="mathematical-induction-steps" class="content-section">
+    <h2>Mathematical Induction Steps</h2>
+    <p>Prove that p(n) is true for all positive integers 'n'</p>
+    <div class="induction-steps">
+        <p><strong>Note:</strong> We aren't proving that p(k) is true, we are proving that if p(k) is true then p(k+1) is also true.</p>
+        <ol>
+            <li>Base step: prove that p(1) is true.</li>
+            <li>Inductive step: prove that p(k) → p(k+1) is true.
+                <ul>
+                    <li>Assume that p(k) is true for some arbitrary k.</li>
+                    <li>Assuming the above is true for some arbitrary k.</li>
+                    <li>Assuming p(k) is true is called the <em>inductive hypothesis</em>.</li>
+                </ul>
+            </li>
+        </ol>
+        <p>Once steps 1 and 2 are complete, we've proven that ∀n P(n) is true for the domain ℤ⁺.</p>
+        <p>We've proven ∀k (p(k) → p(k+1))</p>
+        <p>Thus: (p(1) ∧ (p(k) → p(k+1)))→∀n p(n) with the domain ℤ⁺</p>
+        <p><strong>Important note:</strong></p>
+        <ul>
+            <li>We do not assume that p(k) is true for all positive integers.</li>
+            <li>We only show that if p(k) is assumed to be true then p(k+1) is also true.</li>
+        </ul>
+    </div>
+</div>
+
+<!-- Mathematical Induction Example Section -->
+<div id="mathematical-induction-example" class="content-section">
+    <h2>Mathematical Induction Example</h2>
+    <p>Prove that n³ - n is divisible by 3 for all n; domain: ℤ⁺.</p>
+    <ol>
+        <li>State the problem mathematically: let p(n)= n³ - n = 3m where m is in ℤ.</li>
+        <li>Prove p(1) is true.
+            <ul>
+                <li>1³-1=0</li>
+                <li>Can 0 written as 3 x some integer m?</li>
+                <li>3x0</li>
+                <li>ie, m=0 in the statement 3m</li>
+            </ul>
+        </li>
+        <li>Prove that if p(k) is true then p(k+1) is true for some arbitrary integer k.
+            <ul>
+                <li>Inductive hypothesis: k³-3m</li>
+                <li>Calculate p(k+1)</li>
+                <li>(k+1)³ - (k + 1)</li>
+                <li>k³+3k²+3k+1-(k+1)</li>
+                <li>What are we trying to accomplish?</li>
+                <li>k³+3k²+3k+k+1</li>
+                <li>k³+3k²+3k</li>
+                <li>k³=3m</li>
+                <li>3m+3k²+3k</li>
+                <li>3(m+k²+k)</li>
+                <li>3g</li>
+            </ul>
+        </li>
+    </ol>
+    <p>Since p(1) is true and if p(k) is true then p(k+1) is true, thus by mathematical induction p(n) is true for all positive integers, n.</p>
+</div>
+
+
+
+<script>
+    function scrollToSection(sectionId) {
+        document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function showBagContents() {
+        alert("The bag contains: apple, banana, cherry");
+    }
+
+    function showExample() {
+        // Placeholder function for interactive example
+        alert("Interactive set creation example here!");
+    }
+
+    function checkAnswer(answer) {
+        const feedback = document.getElementById('quiz-feedback');
+        if (answer === 'no') {
+            feedback.textContent = "Correct! 'Orange' is not in our fruit set.";
+        } else {
+            feedback.textContent = "Oops! Try again.";
+        }
+    }
+
+    function goToIndex() {
+        window.location.replace("index.html");
+    }
+
+    const grid = document.querySelector('.grid-container');
+    const totalButtons = document.querySelectorAll('.grid-item').length;
+    const buttonsPerPage = 6;
+    let currentPage = 1;
+
+    function updateButtons() {
+        const start = (currentPage - 1) * buttonsPerPage;
+        const end = start + buttonsPerPage;
+        const buttons = document.querySelectorAll('.grid-item');
+
+        buttons.forEach((button, index) => {
+            if (index >= start && index < end) {
+                button.style.display = 'block';
+            } else {
+                button.style.display = 'none';
+            }
+        });
+
+        updateDots(); // Added to update carousel dots
+    }
+
+    function prevSlide() {
+        if (currentPage > 1) {
+            currentPage--;
+            updateButtons();
+        }
+    }
+
+    function nextSlide() {
+        const maxPages = Math.ceil(totalButtons / buttonsPerPage);
+        if (currentPage < maxPages) {
+            currentPage++;
+            updateButtons();
+        }
+    }
+
+    // Update dots based on current page
+    function updateDots() {
+        const dotsContainer = document.getElementById('carouselDots');
+        dotsContainer.innerHTML = '';
+
+        for (let i = 1; i <= Math.ceil(totalButtons / buttonsPerPage); i++) {
+            const dot = document.createElement('div');
+            dot.classList.add('carousel-dot');
+            if (i === currentPage) {
+                dot.classList.add('current-dot');
+            }
+
+            // Add click event to navigate to the corresponding page
+            dot.addEventListener('click', function () {
+                currentPage = i;
+                updateButtons();
+            });
+
+            dotsContainer.appendChild(dot);
+        }
+    }
+
+    // Initialize buttons and dots on page load
+    updateButtons();
+</script>
+</body>
+</html>
+
+
