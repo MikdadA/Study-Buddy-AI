@@ -9,7 +9,7 @@ app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
 
 # Set your OpenAI API key
-os.environ["OPENAI_API_KEY"] = "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"
+os.environ["OPENAI_API_KEY"] = "REDACTED"
 
 # Load your AI learning model
 data = TextLoader("AI_Learning_Model.txt")
